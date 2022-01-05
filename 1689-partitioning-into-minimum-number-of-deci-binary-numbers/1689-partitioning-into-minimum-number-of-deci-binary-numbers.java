@@ -6,6 +6,8 @@ class Solution {
         {
             if((int)(n.charAt(i) - '0') > max)
                 max = (int)(n.charAt(i) - '0');
+            if(max==9)
+                break;
         }
         return max;
     }
