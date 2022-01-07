@@ -12,9 +12,11 @@ class Solution {
         for(int i = 0; i<b.length; i++)
         {
             if(!freq2.containsKey(b[i]))
+            {
                 if(freq1.containsKey(b[i]))
                     ans.add(b[i]);
                 freq2.put(b[i], true);
+            }
         }
         for(int i = 0; i<c.length; i++)
         {
