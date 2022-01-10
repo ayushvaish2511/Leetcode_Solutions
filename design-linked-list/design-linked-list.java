@@ -3,6 +3,7 @@ class MyLinkedList {
     {
         int val;
         Node next;
+        Node prev;
         Node(int val)
         {
             this.val = val;
@@ -34,6 +35,7 @@ class MyLinkedList {
     public void addAtHead(int val) 
     {
         Node a = new Node(val);
+        a.prev = null;
         a.next = head;
         head = a;
         this.length++;
@@ -47,8 +49,7 @@ class MyLinkedList {
         Node temp = head;
         if(this.length == 0)
         {
-            head = a;
-            this.length++;
+            addAtHead(val);
             return;
         }
         while(temp.next!=null)
@@ -56,6 +57,7 @@ class MyLinkedList {
             temp = temp.next;
         }
         temp.next = a;
+        a.prev = temp;
         this.length++;
     }
     
@@ -77,8 +79,11 @@ class MyLinkedList {
                 temp = temp.next;
                 i++;
             }
+            Node temp2 = temp.next;
             a.next = temp.next;
+            a.prev = temp;
             temp.next = a;
+            temp2.prev = a;
             this.length++;
         }        
     }
@@ -88,7 +93,21 @@ class MyLinkedList {
         if(index < 0 || index >= length)
             return;
         else if(index == 0)
+        {
             head = head.next;
+            
+        }
+        else if(index == length-1)
+        {
+            Node temp = head;
+            Node pre = null;
+            while(temp.next!=null)
+            {
+                pre = temp;
+                temp = temp.next;
+            }
+            pre.next = null;
+        }
         else
         {
             Node temp = head;
@@ -101,6 +120,8 @@ class MyLinkedList {
                 i++;
             }
             pre.next = temp.next;
+            Node temp2 = temp.next;
+            temp2.prev = pre;
         }
         this.length--;
     }
