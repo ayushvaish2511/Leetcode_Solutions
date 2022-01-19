@@ -10,20 +10,16 @@
  * }
  */
 public class Solution {
-    public boolean hasCycle(ListNode head) 
-    {
+    public boolean hasCycle(ListNode head) {
         ListNode turtle = head;
         ListNode rabbit = head;
-        int flag = 0;
-        while(turtle!=null && rabbit!=null && rabbit.next!=null)
+        while(rabbit!=null && turtle!=null && rabbit.next!=null)
         {
             turtle = turtle.next;
             rabbit = rabbit.next.next;
-            if(turtle == rabbit)
-            {
+            if(rabbit == turtle)
                 return true;
-            }
         }
-        return false;
+        return false;        
     }
 }
