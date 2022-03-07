@@ -14,27 +14,41 @@
  * }
  */
 class Solution {
+    public boolean isMirror(TreeNode le, TreeNode ri)
+    {
+        if(le == null && ri == null)
+            return true;
+        if(le!=null && ri!=null && le.val==ri.val)
+        {
+            return (isMirror(le.left, ri.right) && isMirror(le.right, ri.left));
+        }
+        return false;
+    }
     public boolean isSymmetric(TreeNode root) 
     {
-        //Iterative Approach
-        Queue<TreeNode> qu = new LinkedList<>();
-        qu.add(root.left);
-        qu.add(root.right);
-        while(!qu.isEmpty())
-        {
-            TreeNode le = qu.remove();
-            TreeNode ri = qu.remove();
-            if(le == null && ri == null)
-                continue;
-            else if(le == null || ri == null)
-                return false;
-            else if(le.val != ri.val)
-                return false;
-            qu.add(le.left);
-            qu.add(ri.right);
-            qu.add(le.right);
-            qu.add(ri.left);
-        }
-        return true;
+        // //Iterative Approach
+        // Queue<TreeNode> qu = new LinkedList<>();
+        // qu.add(root.left);
+        // qu.add(root.right);
+        // while(!qu.isEmpty())
+        // {
+        //     TreeNode le = qu.remove();
+        //     TreeNode ri = qu.remove();
+        //     if(le == null && ri == null)
+        //         continue;
+        //     else if(le == null || ri == null)
+        //         return false;
+        //     else if(le.val != ri.val)
+        //         return false;
+        //     qu.add(le.left);
+        //     qu.add(ri.right);
+        //     qu.add(le.right);
+        //     qu.add(ri.left);
+        // }
+        // return true;
+        
+        
+        //Recursive
+        return isMirror(root, root);
     }
 }
