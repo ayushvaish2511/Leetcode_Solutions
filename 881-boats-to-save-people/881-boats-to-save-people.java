@@ -2,23 +2,23 @@ class Solution {
     public int numRescueBoats(int[] people, int limit) 
     {
         Arrays.sort(people);
-        int ans1 = 0;
-        int i = 0;
-        for(i = 0; i<people.length-1; i++)
-        {
-            if(people[i] + people[i+1] <=limit)
-            {
-                ans1++;
-                i++;
-            }
-            else 
-            {
-                ans1++;
-            }
+//         int ans1 = 0;
+//         int i = 0;
+//         for(i = 0; i<people.length-1; i++)
+//         {
+//             if(people[i] + people[i+1] <=limit)
+//             {
+//                 ans1++;
+//                 i++;
+//             }
+//             else 
+//             {
+//                 ans1++;
+//             }
             
-        }
-        if(i == people.length-1)
-            ans1++;
+//         }
+//         if(i == people.length-1)
+//             ans1++;
         
         //Two pointer
         int ans2 = 0;
@@ -44,6 +44,7 @@ class Solution {
                 end--;
             }
         }
-        return ans1 < ans2 ? ans1 : ans2;
+        return ans2;
+        // return ans1 < ans2 ? ans1 : ans2;
     }
 }
