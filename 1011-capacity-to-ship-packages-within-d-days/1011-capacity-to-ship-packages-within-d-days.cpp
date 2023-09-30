@@ -8,8 +8,8 @@ public:
             k += weights[i];
             if(k>mid)
             {
-                k = weights[i];
-                // i--;
+                k = 0;
+                i--;
                 repo++;
             }
         }
