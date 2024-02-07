@@ -1,5 +1,15 @@
 class Solution {
+    public class Pairs{
+        char ch;
+        int freq;
+        Pairs(char ch, int freq)
+        {
+            this.ch = ch;
+            this.freq = freq;
+        }
+    }
     public String frequencySort(String s) {
+        PriorityQueue<Pairs> pq = new PriorityQueue<Pairs>((node1, node2) -> Integer.compare(node2.freq, node1.freq));
         HashMap<Character, Integer> map = new HashMap<>();
         for(int i = 0; i<s.length(); i++)
         {
@@ -13,15 +23,18 @@ class Solution {
                 map.put(ch, 1);
             }
         }
-        PriorityQueue<Character> pq = new PriorityQueue<>((a, b) -> map.get(b) - map.get(a));
-        pq.addAll(map.keySet());
+        for(Map.Entry<Character, Integer> mp : map.entrySet())
+        {
+            Pairs ob = new Pairs(mp.getKey().charValue(), mp.getValue().intValue());
+            pq.add(ob);
+        }
         StringBuilder ans = new StringBuilder("");
         while(!pq.isEmpty())
         {
-            char p = pq.poll();
-            for(int i = 0; i<map.get(p); i++)
+            Pairs temp = pq.poll();
+            for(int i = 0; i<temp.freq; i++)
             {
-                ans.append(p);
+                ans.append(temp.ch + "");
             }
         }
         return ans.toString();
